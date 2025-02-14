@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if user.id %} Класс - Форма Редактировать пользователя {% else %} Класс - Форма Создать пользователя {% endif %}{% endblock %}
+
+{% block content %}
+    <main class="flex-1 p-6">
+        <div class="max-w-2xl mx-auto">
+            <h1 class="text-2xl font-bold mb-6">{% if user.id %} Редактировать пользователя {% else %} Создать пользователя {% endif %}</h1>
+            <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        Картина
+                    </label>
+                    {{ form.image }}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        Имя пользователя
+                    </label>
+                    {{ form.username }}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                        Email
+                    </label>
+                    {{ form.email }}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="rol">
+                        Роль
+                    </label>
+                    {{ form.rol }}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        Пароль
+                    </label>
+                    {{ form.password }}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password2">
+                        Подтвердите пароль
+                    </label>
+                    {{ form.password2 }}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="status">
+                        Статус
+                    </label>
+                    {{ form.status }}
+                </div>
+                <div class="flex items-center justify-between">
+                    {% if user.id %}
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        Редактировать Сохранить
+                    </button>
+                    {% else %}
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        Сохранить
+                    </button>
+                    {% endif %}
+                    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="{% url 'users:list' %}">
+                        Отмена
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock  %}
